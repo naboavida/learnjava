@@ -40,8 +40,11 @@ public class Data {
 					swapcount++;
 				}
 			}
+			if(swapcount % (this.length/10) == 0)
+				System.out.print('.');
 		} while(!sorted);
-		System.out.println("Swap counts for insertion sort: "+swapcount);
+//		System.out.println("Swap counts for insertion sort: "+swapcount);
+		System.out.println('X');
 		return sortedValues;
 	}
 
@@ -60,8 +63,11 @@ public class Data {
 					swapcount++;
 				}
 			}
+			if(swapcount % (this.length/10) == 0)
+				System.out.print('.');
 		}
-		System.out.println("Swap counts for bubble sort: "+swapcount);
+//		System.out.println("Swap counts for bubble sort: "+swapcount);
+		System.out.println('X');
 		return sortedValues;
 	}
 	
