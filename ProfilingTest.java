@@ -1,4 +1,6 @@
-package learnjava.algorithms.sort;
+package learnjava;
+
+import learnjava.algorithms.sort.Data;
 
 public class ProfilingTest {
 	public static void main(String[] args){
