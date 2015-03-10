@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import learnjava.names.FullName;
+import learnjava.names.FullNameComparable;
 
 
 
@@ -86,7 +87,7 @@ public class SortNamesTest {
 	 */
 	
 	public static void printAllFullNamesList(List<FullName> list){
-		Iterator<FullName> it = list.listIterator();
+		Iterator<FullName> it = list.iterator();
 		while(it.hasNext()){
 			System.out.println(it.next().getFullName());
 		}
@@ -102,6 +103,25 @@ public class SortNamesTest {
 				return n1.getLast().compareToIgnoreCase(n2.getLast());
 			}
 		});
+	}
+	
+	
+	
+	/*
+	 * Methods for 3rd approach
+	 * 
+	 */
+	
+	public static void printAllFullNamesList2(List<FullNameComparable> list){
+		Iterator<FullNameComparable> it = list.iterator();
+		while(it.hasNext()){
+			System.out.println(it.next().getFullName());
+		}
+	}
+	
+	
+	public static void sortFullNames2(List<FullNameComparable> fullNames){
+		Collections.sort(fullNames);
 	}
 	
 	
@@ -122,21 +142,18 @@ public class SortNamesTest {
 		fullNames[9] = new FullName("John", "Abbot");
 		
 		// START TEST 1
-		
-		FullName[] namesTest1 = new FullName[10];
-		System.arraycopy(fullNames, 0, namesTest1, 0, fullNames.length);
-	
+
 		// sort full names, first sort order is the first name, then second sort order is last name.
 		// sort by first name
-		namesTest1 = sortByFirstName(namesTest1);
+		fullNames = sortByFirstName(fullNames);
 		
 	
 		// then another full loop to detect a first name change
 		// sort all names before that by last name
 		// continue
-		namesTest1 = sortByLastName(namesTest1);
+		fullNames = sortByLastName(fullNames);
 	
-		printAllFullNames(namesTest1);
+		printAllFullNames(fullNames);
 		
 		// END TEST 1
 		
@@ -157,10 +174,31 @@ public class SortNamesTest {
 		namesList.add( new FullName("John", "Abbot"));
 		
 		sortFullNames(namesList);
-		
+		System.out.println("\n\nnamesList:\n");
 		printAllFullNamesList(namesList);
 		
 		// END TEST 2
+		
+		
+		// START TEST 3
+		
+		List<FullNameComparable> namesList2 = new ArrayList<FullNameComparable>();
+		namesList2.add( new FullNameComparable("John", "Lewis"));
+		namesList2.add( new FullNameComparable("Ann", "Levitt"));
+		namesList2.add( new FullNameComparable("Peter", "Drucker"));
+		namesList2.add( new FullNameComparable("John", "Laws"));
+		namesList2.add( new FullNameComparable("Jason", "Lewis"));
+	
+		namesList2.add( new FullNameComparable("Mark", "Zuckie"));
+		namesList2.add( new FullNameComparable("Mark", "Anders"));
+		namesList2.add( new FullNameComparable("Johnathan", "Davies"));
+		namesList2.add( new FullNameComparable("John", "Carrot"));
+		namesList2.add( new FullNameComparable("John", "Abbot"));
+		
+		sortFullNames2(namesList2);
+		
+		System.out.println("\n\nnamesList2:\n");
+		printAllFullNamesList2(namesList2);
 	}
 	
 }
