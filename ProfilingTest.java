@@ -1,10 +1,10 @@
 package learnjava;
 
-import learnjava.algorithms.sort.SortableData;
+import learnjava.algorithms.sort.Data;
 
 public class ProfilingTest {
 	
-	private static int[] launchTest(String testType, SortableData data, int repeats){
+	private static int[] launchTest(String testType, Data data, int repeats){
 		int accumMs = 0;
 		int accumCount = 0;
 		int[] retData = new int[(data.getValues()).length];
@@ -18,9 +18,6 @@ public class ProfilingTest {
 				case "bubble_sort":
 					retData = data.bubbleSort();
 					break;
-				case "bubble_sort_original":
-					retData = data.bubbleSortOriginal();
-					break;
 				default:
 					break;
 			}
@@ -31,16 +28,14 @@ public class ProfilingTest {
 		return retData;
 	}
 	
-	
-	
 	public static void main(String[] args){
 		final long start0 = System.currentTimeMillis();
 		
 		// Prepare the test
-		int dataLen = 5000,
-			repeats = 10,
+		int dataLen = 50000,
+			repeats = 4,
 			i;
-		SortableData d = new SortableData(dataLen, "inverted");
+		Data d = new Data(dataLen);
 		int[] data = d.getValues();
 
 		System.out.println("Time to prep data: "+(System.currentTimeMillis() - start0)+" ms.");
@@ -51,8 +46,30 @@ public class ProfilingTest {
 		
 		data = launchTest("bubble_sort", d, repeats);
 		
-		data = launchTest("bubble_sort_original", d, repeats);
+//		int accumMs = 0;
+//		int accumCount = 0;
+//		for(i=0; i<repeats; i++){
+//			final long start1 = System.currentTimeMillis();
+//			data = d.insertionSort();
+//			accumMs += (System.currentTimeMillis() - start1);
+//			accumCount++;
+//		}
+//		System.out.println("Average time to run insertion sort on "+repeats+" repeats is "+(accumMs/accumCount)+" ms.");
+//		
+//		
+//		
+//		accumMs = 0;
+//		accumCount = 0;
+//		for(i=0; i<repeats; i++){
+//			final long start2 = System.currentTimeMillis();
+//			data = d.bubbleSort();
+//			accumMs += (System.currentTimeMillis() - start2);
+//			accumCount++;
+//		}
+//		System.out.println("Average time to run bubble sort on "+repeats+" repeats is "+(accumMs/accumCount)+" ms.");
 		
-		
+//		for(i=0; i<data.length; i++){
+//			System.out.println(data[i]);
+//		}
 	}
 }
